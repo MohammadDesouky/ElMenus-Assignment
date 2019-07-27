@@ -22,8 +22,12 @@ class MenuActivity : AppCompatActivity() {
             onSelectedTagChanged(tag)
         }
         tagsRecyclerView.adapter = adapter
-        viewModel.observableTags.observe(this, Observer {
-            adapter.submitList(it)
+        viewModel.observableTags.observe(this, Observer { tagsPagedList ->
+            adapter.submitList(tagsPagedList)
+            try {
+                onSelectedTagChanged(tagsPagedList[0])
+            } catch (ignored: Exception) {
+            }
         })
         viewModel.observableItemsOfSelectedTags.observe(this, Observer { items ->
             menuRecyclerView.adapter = ItemsRecyclerViewAdapter(items) { clickedItem ->
