@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Elmenus</string>
+    <string name="tag_name_place_holder">tag name</string>
+    <string name="item_name_place_holder">Item Name</string>
+    <string name="item_description_place_holder">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+        elementum ac erat semper convallis. Mauris condimentum nibh vitae leo maximus fringilla at vel quam. Aliquam
+        eget eros ac felis tincidunt consequat. Nulla nec molestie orci, ac rhoncus libero. Pellentesque lacinia dolor
+        mauris, laoreet interdum purus consectetur nec. Mauris at justo a nibh ultricies sodales sed sed ipsum. Quisque
+        vestibulum lectus in lacus maximus viverra. Nunc nec tellus et tortor vestibulum volutpat quis nec mi. Integer
+        porttitor lacus vulputate lectus venenatis tempus. Proin pretium mauris sit amet suscipit tristique. Nam
+        facilisis, purus in viverra efficitur, purus ipsum eleifend quam, rhoncus luctus enim diam in t
+    </string>
 </resources>
