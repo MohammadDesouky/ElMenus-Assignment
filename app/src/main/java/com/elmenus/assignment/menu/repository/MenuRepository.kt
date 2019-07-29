@@ -9,6 +9,7 @@ import com.elmenus.assignment.menu.model.ItemsApiResponse
 import com.elmenus.assignment.menu.model.Tag
 import com.elmenus.assignment.menu.model.TagsApiResponse
 import com.elmenus.assignment.menu.repository.data.TagDataSourceFactory
+import com.elmenus.assignment.menu.repository.db.MenuDB
 import com.elmenus.assignment.menu.repository.web.MenuApiCall
 import com.elmenus.assignment.utils.RetrofitCreator
 import retrofit2.Call
@@ -20,6 +21,7 @@ class MenuRepository {
 
     private val api = RetrofitCreator.new<MenuApiCall>()
     private val sourceFactory = TagDataSourceFactory()
+    //private val db= MenuDB.create()
     var observableTags = sourceFactory.toLiveData(8)
     var observableItemsOfSelectedTag = MutableLiveData<ArrayList<Item>>()
 

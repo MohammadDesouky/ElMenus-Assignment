@@ -23,6 +23,7 @@
                 android:id="@+id/itemPhotoImageView"
                 android:layout_width="match_parent"
                 android:layout_height="192dp"
+                android:transitionName="itemMainImage"
                 tools:srcCompat="@tools:sample/avatars"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"/>

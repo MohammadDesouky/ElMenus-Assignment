@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.elmenus.assignment.R
 import com.elmenus.assignment.menu.model.Tag
+import com.elmenus.assignment.utils.GlideConstants
 import kotlinx.android.synthetic.main.tag_item.view.*
 
 class TagViewHolder(parent: ViewGroup, private var isSelected: Boolean = false) : RecyclerView.ViewHolder(
@@ -16,6 +17,8 @@ class TagViewHolder(parent: ViewGroup, private var isSelected: Boolean = false) 
         itemView.tagNameTextView.text = tag?.name
         Glide.with(itemView.context)
             .load(tag?.photoURL)
+            .apply(GlideConstants.defaultRequestOptions)
+            .transition(GlideConstants.defaultTransition)
             .into(itemView.tagPhotoImageView)
         itemView.setOnClickListener {
             isSelected = true
