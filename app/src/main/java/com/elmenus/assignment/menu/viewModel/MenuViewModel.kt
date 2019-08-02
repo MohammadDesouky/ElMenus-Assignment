@@ -1,19 +1,20 @@
 package com.elmenus.assignment.menu.viewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.elmenus.assignment.menu.model.Item
-import com.elmenus.assignment.menu.model.Tag
-import com.elmenus.assignment.menu.model.TagsApiResponse
+import com.elmenus.assignment.menu.model.FoodTag
 import com.elmenus.assignment.menu.repository.MenuRepository
+import com.elmenus.assignment.menu.repository.db.MenuDB
 
-class MenuViewModel : ViewModel() {
+class MenuViewModel(db: MenuDB, application: Application) : AndroidViewModel(application) {
 
-    private val repository = MenuRepository()
+    private val repository = MenuRepository(db,application.applicationContext)
 
-    val observableTags: LiveData<PagedList<Tag>> = repository.observableTags
-    val observableItemsOfSelectedTags: LiveData<ArrayList<Item>> = repository.observableItemsOfSelectedTag
+    val observableTags: LiveData<PagedList<FoodTag>> = repository.observableTags
+    val observableItemsOfSelectedTags: LiveData<List<Item>> = repository.observableItemsOfSelectedTag
 
     fun reloadTags() {
         repository.invalidateTags()

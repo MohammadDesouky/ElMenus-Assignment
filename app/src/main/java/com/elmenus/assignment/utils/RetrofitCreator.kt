@@ -16,7 +16,7 @@ object RetrofitCreator {
 
     inline fun <reified T> newRetrofitWebService(client: OkHttpClient.Builder, baseURL: String): T {
         val retrofit = Retrofit.Builder().client(client.build())
-        retrofit.addConverterFactory(GsonConverterFactory.create(GsonBuilder().create())).baseUrl(baseURL)
+        retrofit.addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create())).baseUrl(baseURL)
         return retrofit.build().create(T::class.java)
     }
 

@@ -14,7 +14,7 @@
     android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tagsRecyclerView"
+                android:id="@+id/foodTagsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="64dp"

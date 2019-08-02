@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.elmenus.assignment.menu.model.Item
-import com.elmenus.assignment.menu.model.Tag
-import com.elmenus.assignment.menu.repository.db.Dao.ItemsDao
-import com.elmenus.assignment.menu.repository.db.Dao.TagsDao
+import com.elmenus.assignment.menu.model.FoodTag
+import com.elmenus.assignment.menu.repository.db.dao.TagsItemsDao
+import com.elmenus.assignment.menu.repository.db.dao.FoodTagsDao
 
 @Database(
-    entities = [Item::class, Tag::class],
+    entities = [Item::class, FoodTag::class],
     version = 1,
     exportSchema = false
 )
@@ -27,7 +27,7 @@ abstract class MenuDB : RoomDatabase() {
         }
     }
 
-    abstract fun tagsDao(): TagsDao
+    abstract fun tagsDao(): FoodTagsDao
 
-    abstract fun itemsDao(): ItemsDao
+    abstract fun itemsDao(): TagsItemsDao
 }
