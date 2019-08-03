@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.elmenus.assignment.R
-import com.elmenus.assignment.utils.GlideConstants
+import com.elmenus.assignment.constants.GlideConstants
 import kotlinx.android.synthetic.main.activity_item_details.*
 
 class ItemDetailsActivity : AppCompatActivity() {

@@ -6,13 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".menu.view.MenuActivity">
+        tools:context=".main.view.MainActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+            android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/foodTagsRecyclerView"
                 android:layout_width="match_parent"
@@ -21,6 +20,11 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal"/>
+        <ProgressBar
+                android:id="@+id/menuProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menuRecyclerView"
                 android:layout_width="match_parent"
