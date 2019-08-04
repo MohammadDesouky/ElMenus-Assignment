@@ -11,7 +11,8 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
 =================================
 
 ## Technical overview
- 1. I used MVVM with the modern archticture components in the architicure of the app 
+ 1. I used MVVM with the modern architecture components in the architecture of the app 
+ ![image](https://user-images.githubusercontent.com/5509571/62429675-c6413500-b711-11e9-8bb2-40828606f41d.png)
  and the new paging technology in the infinite tag list:
  ![alt](https://codelabs.developers.google.com/codelabs/android-paging/img/a4f392ad4ae49042.gif)
  because I'm using room the data layer handled in Room itself the data source and it's factory, I just implemented the Boundary Callback.
