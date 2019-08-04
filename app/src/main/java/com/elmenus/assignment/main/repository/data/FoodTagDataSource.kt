@@ -2,13 +2,13 @@ package com.elmenus.assignment.main.repository.data
 
 import androidx.paging.PageKeyedDataSource
 import com.elmenus.assignment.main.model.FoodTag
-import com.elmenus.assignment.main.repository.web.MenuApiCall
+import com.elmenus.assignment.main.repository.web.ApiCalls
 import com.elmenus.assignment.utils.RetrofitCreator
 import java.io.IOException
 
 class FoodTagDataSource : PageKeyedDataSource<Int, FoodTag>() {
 
-    private val api = RetrofitCreator.new<MenuApiCall>()
+    private val api = RetrofitCreator.new<ApiCalls>()
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, FoodTag>) {
         try {

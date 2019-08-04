@@ -1,4 +1,4 @@
-package com.elmenus.assignment.main.view
+package com.elmenus.assignment.main.view.foodItemsRecycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.elmenus.assignment.main.model.Item
 import com.elmenus.assignment.constants.GlideConstants
 import kotlinx.android.synthetic.main.food_item_card.view.*
 
-class ItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+class FoodItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.food_item_card, parent, false)
 ) {
     fun bindItemToView(item: Item?, onClick: (item: Item?, imageView: ImageView) -> Unit) {

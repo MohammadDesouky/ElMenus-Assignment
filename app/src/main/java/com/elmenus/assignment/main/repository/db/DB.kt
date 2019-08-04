@@ -14,14 +14,14 @@ import com.elmenus.assignment.main.repository.db.dao.FoodTagsDao
     version = 1,
     exportSchema = false
 )
-abstract class MenuDB : RoomDatabase() {
+abstract class DB : RoomDatabase() {
 
     companion object {
 
-        private const val DB_NAME = "elmenusAssignmentDatabase.db"
+        private const val DB_NAME = "database.db"
 
-        fun create(context: Context): MenuDB {
-            return Room.databaseBuilder(context, MenuDB::class.java, DB_NAME)
+        fun create(context: Context): DB {
+            return Room.databaseBuilder(context, DB::class.java, DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
         }

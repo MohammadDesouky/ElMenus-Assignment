@@ -14,14 +14,16 @@ import com.elmenus.assignment.R
 import com.elmenus.assignment.itemDetails.ItemDetailsActivity
 import com.elmenus.assignment.main.model.FoodTag
 import com.elmenus.assignment.main.model.Item
-import com.elmenus.assignment.main.repository.db.MenuDB
-import com.elmenus.assignment.main.viewModel.MenuViewModel
+import com.elmenus.assignment.main.repository.db.DB
+import com.elmenus.assignment.main.view.foodItemsRecycler.FoodItemsRecyclerViewAdapter
+import com.elmenus.assignment.main.view.foodTagRecycler.FoodTagsPagedAdapter
+import com.elmenus.assignment.main.viewModel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_menu.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MenuViewModel
+    private lateinit var viewModel: MainActivityViewModel
     private lateinit var adapter: FoodTagsPagedAdapter
     private var firstLoad = true
 
@@ -32,18 +34,13 @@ class MainActivity : AppCompatActivity() {
         updateTagsAdapter()
         observeTagsChanges()
         observeItemsOfTagChanges()
-        reloadTags()
-    }
-
-    private fun reloadTags() {
-        viewModel.reloadTags()
     }
 
     private fun observeItemsOfTagChanges() {
         viewModel.observableItemsOfSelectedTags.observe(this, Observer { items ->
             hideItemsLoader()
             menuRecyclerView.adapter =
-                ItemsRecyclerViewAdapter(items as ArrayList<Item>) { clickedItem, clickedCardImage ->
+                FoodItemsRecyclerViewAdapter(items as ArrayList<Item>) { clickedItem, clickedCardImage ->
                     clickedItem?.let { item -> onItemClicked(item, clickedCardImage) }
                 }
         })
@@ -52,13 +49,13 @@ class MainActivity : AppCompatActivity() {
     private fun observeTagsChanges() {
         viewModel.observableTags.observe(this, Observer { tagsPagedList ->
             adapter.submitList(tagsPagedList)
-            try{
+            try {
                 if (firstLoad) {
                     onSelectedTagChanged(0, tagsPagedList[0])
                     firstLoad = false
                 }
+            } catch (ignored: Exception) {
             }
-            catch(ignored:Exception){}
         })
     }
 
@@ -70,14 +67,14 @@ class MainActivity : AppCompatActivity() {
         foodTagsRecyclerView.adapter = adapter
     }
 
-    private fun getViewModel(): MenuViewModel {
+    private fun getViewModel(): MainActivityViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                val database = MenuDB.create(applicationContext)
+                val database = DB.create(applicationContext)
                 @Suppress("UNCHECKED_CAST")
-                return MenuViewModel(database, application) as T
+                return MainActivityViewModel(database, application) as T
             }
-        })[MenuViewModel::class.java]
+        })[MainActivityViewModel::class.java]
     }
 
     private fun onItemClicked(clickedItem: Item, cardImage: ImageView) {
@@ -92,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onSelectedTagChanged(selectedTagIndex: Int, tag: FoodTag?) {
-        if(adapter.selectedFoodTagIndex!=selectedTagIndex) {
+        if (adapter.selectedFoodTagIndex != selectedTagIndex) {
             showItemsLoader()
             tag?.name?.let { tagName -> viewModel.setSelectedTagByName(tagName) }
             adapter.selectedFoodTagIndex = selectedTagIndex

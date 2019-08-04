@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface MenuApiCall {
+interface ApiCalls {
 
     @GET("/tags/{pageNumber}")
     fun getTags(@Path("pageNumber") pageNumber: Int): Call<FoodTagsApiResponse>

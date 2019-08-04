@@ -8,9 +8,9 @@ import com.elmenus.assignment.constants.AppConstants
 import com.elmenus.assignment.main.model.Item
 import com.elmenus.assignment.main.model.FoodTagItemsApiResponse
 import com.elmenus.assignment.main.repository.data.FoodTagDataSourceFactory
-import com.elmenus.assignment.main.repository.db.MenuDB
-import com.elmenus.assignment.main.repository.db.TagsBoundaryCallBack
-import com.elmenus.assignment.main.repository.web.MenuApiCall
+import com.elmenus.assignment.main.repository.db.DB
+import com.elmenus.assignment.main.repository.db.FoodTagsBoundaryCallBack
+import com.elmenus.assignment.main.repository.web.ApiCalls
 import com.elmenus.assignment.utils.RetrofitCreator
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -19,21 +19,16 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MenuRepository(val db: MenuDB, context: Context) {
+class FoodRepository(val db: DB, context: Context) {
 
-    private val api = RetrofitCreator.new<MenuApiCall>()
-    private val sourceFactory = FoodTagDataSourceFactory()
-    private val callback = TagsBoundaryCallBack(context, db, api)
+    private val api = RetrofitCreator.new<ApiCalls>()
+    private val callback = FoodTagsBoundaryCallBack(context, db, api)
 
     var observableTags = db.tagsDao().getAllTags().toLiveData(
         pageSize = AppConstants.DATABASE_PAGE_SIZE,
         boundaryCallback = callback
     )
     var observableItemsOfSelectedTag = MutableLiveData<List<Item>>()
-
-    fun invalidateTags() {
-        sourceFactory.sourceLiveData.value?.invalidate()
-    }
 
     fun setSelectedTagByName(tagName: String) {
 

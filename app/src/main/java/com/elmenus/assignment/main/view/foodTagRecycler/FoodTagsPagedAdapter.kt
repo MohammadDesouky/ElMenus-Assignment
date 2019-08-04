@@ -1,6 +1,5 @@
-package com.elmenus.assignment.main.view
+package com.elmenus.assignment.main.view.foodTagRecycler
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -24,7 +23,8 @@ class FoodTagsPagedAdapter(private var onItemClicked: (tagIndex: Int, tag: FoodT
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = FoodTagViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        FoodTagViewHolder(parent)
 
     override fun onBindViewHolder(holder: FoodTagViewHolder, position: Int) {
         if (position == selectedFoodTagIndex) {

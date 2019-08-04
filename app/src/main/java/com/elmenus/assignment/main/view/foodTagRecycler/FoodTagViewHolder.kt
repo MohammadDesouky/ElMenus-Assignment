@@ -1,4 +1,4 @@
-package com.elmenus.assignment.main.view
+package com.elmenus.assignment.main.view.foodTagRecycler
 
 import android.view.LayoutInflater
 import android.view.View

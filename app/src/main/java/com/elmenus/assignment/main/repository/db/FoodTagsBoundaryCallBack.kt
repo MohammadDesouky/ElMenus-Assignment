@@ -4,17 +4,17 @@ import android.content.Context
 import androidx.paging.PagedList
 import com.elmenus.assignment.main.model.FoodTag
 import com.elmenus.assignment.main.model.FoodTagsApiResponse
-import com.elmenus.assignment.main.repository.web.MenuApiCall
+import com.elmenus.assignment.main.repository.web.ApiCalls
 import com.elmenus.assignment.utils.PreferenceManager
 import org.jetbrains.anko.doAsync
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TagsBoundaryCallBack(
+class FoodTagsBoundaryCallBack(
     val context: Context,
-    val db: MenuDB,
-    private val api: MenuApiCall
+    val db: DB,
+    private val api: ApiCalls
 ) :
     PagedList.BoundaryCallback<FoodTag>() {
 
