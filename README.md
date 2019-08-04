@@ -8,7 +8,7 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
 <img src="https://user-images.githubusercontent.com/5509571/62429184-9abb4c00-b70b-11e9-9df2-0729aacce189.png" alt="Offline and cache has no data" width="250"/> <img src="https://user-images.githubusercontent.com/5509571/62429186-9db63c80-b70b-11e9-9021-cfb7ab48aec0.png" alt="Offline and cache has data" width="250"/>
 <img src="https://user-images.githubusercontent.com/5509571/62429608-f2a88180-b710-11e9-9bd1-9da763d4ef0c.png" alt="Error loading selected tag items" width="250"/>
 
-=================================
+========================
 
 ## Technical overview
  1. I used MVVM with the modern architecture components in the architecture of the app 
@@ -30,9 +30,8 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
    * If any error occures including the offline state while loading the list of items (not tags) you will see error message with retry button
    * also if any loading of images errors occurred the error place holder image will be shown.
    5. There is always a room for improvments I like to begin with more test cases to cover more scenarios, also the item details needs some enhancements  
-   
-===============================
- 
+  
+======================== 
 ## Notes: 
    * The Api needs a header of Content-Type to be Application/json which is only supposed to be needed in POST requests only, but it's seems it's removed as a condition in a request  
    * There is a fast splash screen with default wait time of a half second
