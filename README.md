@@ -1,17 +1,36 @@
 # ElMenus-Assignment
 
-## Background:
+## Background
 This is an android app which talk to two dummy Apis a food tags comes in pages the page has eight tags each of which has a list of of food items which comes from the scond api in a static list of items this app mainly consists of two activities one for tags and it's items and the other one for the item details.
 
 ## Screen shots:
 
-## How To use App:
-* 
-## Third Parties Libs:
+## Technical view
+ I used MVVM with the modern archticture components in the architicure of the app 
+ and the 
+## Libs:
 * Retrofit
+Used as RESTful client  
 * Glide
+For loading and caching images
 * Anko
+Used in both multithreading e.g.
+```
+doAsync{
+  .... coroutine to run in background thread
+  uiThread{
+  ....coroutine to run in main thread
+  }
+}
+````
 
+and start activties e.g.
+```startActivity<MainActivity>()```
+* Room
+used to cache both of food tags and food items
+
+* Robolectric
+Used for just mocking activities and thier context
 
 
 * I used Jetpack Paging, you can find a main overview here:
