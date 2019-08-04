@@ -30,7 +30,7 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
    * also if any loading of images errors occurred the error place holder image will be shown.
    5. There is always a room for improvments I like to begin with more test cases to cover more scenarios, also the item details needs some enhancements  
    
-   ===============================
+===============================
  
 ## Notes: 
    * The Api needs a header of Content-Type to be Application/json which is only supposed to be needed in POST requests only, but it's seems it's removed as a condition in a request  
