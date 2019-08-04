@@ -44,7 +44,8 @@ Used as RESTful client,also I made the ok http client loges the apis response in
 For loading and caching images
 * Anko
 Used in:
-** multithreading e.g.
+
+1.multithreading e.g.
 ```
 doAsync{
   .... coroutine to run in background thread
@@ -54,7 +55,7 @@ doAsync{
 }
 ````
 
-** start activties e.g.
+2. start activties e.g.
 ```startActivity<MainActivity>()```
 * Room
 used to cache both of food tags and food items in a local sqlite database.
