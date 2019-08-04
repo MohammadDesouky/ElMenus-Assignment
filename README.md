@@ -45,7 +45,7 @@ For loading and caching images
 * Anko
 Used in:
 
-1.multithreading e.g.
+1. Multithreading & Background Work e.g.
 ```
 doAsync{
   .... coroutine to run in background thread
@@ -55,7 +55,7 @@ doAsync{
 }
 ````
 
-2. start activties e.g.
+2. Start activties e.g.
 ```startActivity<MainActivity>()```
 * Room
 used to cache both of food tags and food items in a local sqlite database.
