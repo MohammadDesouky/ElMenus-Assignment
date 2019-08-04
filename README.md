@@ -71,7 +71,7 @@ Used for just mocking activities and thier context
 * https://github.com/Kotlin/anko/wiki
 
 ### Room
-https://developer.android.com/training/data-storage/room/index.html
+* https://developer.android.com/training/data-storage/room/index.html
 
 ### Architecture components
 * https://developer.android.com/jetpack/docs/guide
