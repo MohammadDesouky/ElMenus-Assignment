@@ -27,9 +27,10 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
    
    ===============================================
    Notes: 
-   * The Api was needed a header of Content-Type to be Application/json which is only supposed to be needed in POST requests only, but it's seems to be removed as a condition in a request  
+   * The Api needs a header of Content-Type to be Application/json which is only supposed to be needed in POST requests only, but it's seems it's removed as a condition in a request  
    * There is a fast splash screen with default wait time of a half second
    The main activity is big a little bit due to ui handling including show/hide  errors and progress bars and views
+   * I named the app El-Menus with dash to be different from the *elmenus* app
    
  
 ## Libs:
