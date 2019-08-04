@@ -10,4 +10,8 @@
         porttitor lacus vulputate lectus venenatis tempus. Proin pretium mauris sit amet suscipit tristique. Nam
         facilisis, purus in viverra efficitur, purus ipsum eleifend quam, rhoncus luctus enim diam in t
     </string>
+    <string name="offline_message">you\'re offline, we will retry after you getting connected</string>
+    <string name="no_up_to_date">You\'re offline, data aren\'t up to date </string>
+    <string name="error_while_loading">Error while loading items</string>
+    <string name="retry">Retry</string>
 </resources>

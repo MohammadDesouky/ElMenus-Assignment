@@ -1,14 +1,12 @@
 package com.elmenus.assignment.main.repository
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.toLiveData
 import com.elmenus.assignment.constants.AppConstants
 import com.elmenus.assignment.main.model.Item
 import com.elmenus.assignment.main.model.FoodTagItemsApiResponse
-import com.elmenus.assignment.main.repository.data.FoodTagDataSourceFactory
-import com.elmenus.assignment.main.repository.db.DB
+import com.elmenus.assignment.main.repository.db.FoodDatabase
 import com.elmenus.assignment.main.repository.db.FoodTagsBoundaryCallBack
 import com.elmenus.assignment.main.repository.web.ApiCalls
 import com.elmenus.assignment.utils.RetrofitCreator
@@ -19,7 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class FoodRepository(val db: DB, context: Context) {
+class FoodRepository(val db: FoodDatabase, context: Context) {
 
     private val api = RetrofitCreator.new<ApiCalls>()
     private val callback = FoodTagsBoundaryCallBack(context, db, api)
@@ -46,7 +44,6 @@ class FoodRepository(val db: DB, context: Context) {
 
     private fun loadFromApi(tagName: String) {
         api.getItemsOfTag(tagName).enqueue(object : Callback<FoodTagItemsApiResponse> {
-
             override fun onResponse(call: Call<FoodTagItemsApiResponse>, response: Response<FoodTagItemsApiResponse>) {
                 val items = response.body()?.items
                 observableItemsOfSelectedTag.value = items
@@ -57,9 +54,17 @@ class FoodRepository(val db: DB, context: Context) {
             }
 
             override fun onFailure(call: Call<FoodTagItemsApiResponse>, t: Throwable) {
-                Log.e("", "")
+                observableItemsOfSelectedTag.value = null
             }
 
         })
+    }
+
+    fun reloadTags() {
+        callback.onZeroItemsLoaded()
+    }
+
+    fun invalidateData() {
+        db.clearAllTables()
     }
 }

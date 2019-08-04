@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class FoodTagsBoundaryCallBack(
     val context: Context,
-    val db: DB,
+    val db: FoodDatabase,
     private val api: ApiCalls
 ) :
     PagedList.BoundaryCallback<FoodTag>() {

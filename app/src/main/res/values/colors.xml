@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#C23814</color>
     <color name="colorAccent">#FF5722</color>
     <color name="half_dark">#60000000</color>
+    <color name="gray">#f5f5f5</color>
 </resources>
