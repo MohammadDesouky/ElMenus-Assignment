@@ -2,6 +2,7 @@ package com.elmenus.assignment.main.repository
 
 import androidx.lifecycle.Observer
 import androidx.paging.PagedList
+import androidx.test.runner.AndroidJUnit4
 import com.elmenus.assignment.main.model.FoodTag
 import com.elmenus.assignment.main.repository.db.FoodDatabase
 import com.elmenus.assignment.main.view.MainActivity
@@ -16,7 +17,8 @@ import org.robolectric.RobolectricTestRunner
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(
+    AndroidJUnit4.class)
 class FoodRepositoryTest {
 
     private lateinit var repository: FoodRepository

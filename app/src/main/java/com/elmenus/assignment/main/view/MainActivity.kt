@@ -23,6 +23,8 @@ import com.elmenus.assignment.R
 import com.elmenus.assignment.broadcastReceivers.ConnectionState
 import com.elmenus.assignment.broadcastReceivers.ConnectionStateBroadCastReceiver
 import com.google.android.material.snackbar.Snackbar
+import org.jetbrains.anko.doAsync
+import java.lang.Thread.sleep
 
 
 class MainActivity : AppCompatActivity() {
@@ -54,7 +56,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        connectionStateReceiver.refreshState(this)
+        doAsync {
+            sleep(5000)
+            connectionStateReceiver.refreshState(this@MainActivity)
+        }
     }
 
     private fun observeConnectionStateChanges() {
