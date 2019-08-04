@@ -25,13 +25,14 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
    * also if any loading of images errors occurred the error place holder image will be shown.
    5. There is always a room for improvments I like to begin with more test cases to cover more scenarios, also the item details needs some enhancements  
    
-   ===============================================
-   Notes: 
+   ===============================
+ 
+## Notes: 
    * The Api needs a header of Content-Type to be Application/json which is only supposed to be needed in POST requests only, but it's seems it's removed as a condition in a request  
    * There is a fast splash screen with default wait time of a half second
    The main activity is big a little bit due to ui handling including show/hide  errors and progress bars and views
    * I named the app El-Menus with dash to be different from the *elmenus* app
-   
+   * Naming: I'm not familiar with this kind of apps, you might be confused of names,btw I considerd the tags as FoodTags and list of items as TagItems or SelectedTagItems  ^_^ 
  
 ## Libs:
 * Retrofit
