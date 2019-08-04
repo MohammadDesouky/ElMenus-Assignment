@@ -3,7 +3,14 @@
 ## Background
 This is an android app which talk to two dummy Apis a food tags comes in pages the page has eight tags each of which has a list of of food items which comes from the scond api in a static list of items this app mainly consists of two activities one for tags and it's items and the other one for the item details.
 
-## Screen shots:
+## Screenshots
+![splash](https://user-images.githubusercontent.com/5509571/62429178-7e1f1400-b70b-11e9-9c05-b6b9da92c8be.png)
+![normal view](https://user-images.githubusercontent.com/5509571/62429179-8414f500-b70b-11e9-9a4a-8a3b2a0638d9.png)
+![item details](https://user-images.githubusercontent.com/5509571/62429180-89723f80-b70b-11e9-8c0a-054df16a43f9.png)
+![offline and cache has no data ](https://user-images.githubusercontent.com/5509571/62429184-9abb4c00-b70b-11e9-9df2-0729aacce189.png)
+![offline and cache has data ](https://user-images.githubusercontent.com/5509571/62429186-9db63c80-b70b-11e9-9021-cfb7ab48aec0.png)
+
+=================================
 
 ## Technical overview
  1. I used MVVM with the modern archticture components in the architicure of the app 
