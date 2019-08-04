@@ -8,7 +8,9 @@ This is an android app which talk to two dummy Apis a food tags comes in pages t
 <img style="display:inline" src="https://user-images.githubusercontent.com/5509571/62429179-8414f500-b70b-11e9-9a4a-8a3b2a0638d9.png" alt="Normal View" width="250"/>
 <img src="https://user-images.githubusercontent.com/5509571/62429180-89723f80-b70b-11e9-8c0a-054df16a43f9.png" alt="Item Details" width="250"/>
 <img src="https://user-images.githubusercontent.com/5509571/62429184-9abb4c00-b70b-11e9-9df2-0729aacce189.png" alt="Offline and cache has no data" width="250"/>
-![offline and cache has data ](https://user-images.githubusercontent.com/5509571/62429186-9db63c80-b70b-11e9-9021-cfb7ab48aec0.png)
+<img src="https://user-images.githubusercontent.com/5509571/62429186-9db63c80-b70b-11e9-9021-cfb7ab48aec0.png" alt="Offline and cache has data" width="250"/>
+<img src="https://user-images.githubusercontent.com/5509571/62429608-f2a88180-b710-11e9-9bd1-9da763d4ef0c.png" alt="Error loading selected tag items" width="250"/>
+
 
 =================================
 
