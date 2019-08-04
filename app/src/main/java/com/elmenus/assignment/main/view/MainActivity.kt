@@ -103,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         offlineMessageContainer?.visibility = View.VISIBLE
         foodTagsRecyclerView.visibility = View.GONE
         tagsProgressBar.visibility = View.GONE
+        tagItemsProgressBar.visibility = View.GONE
     }
 
     private fun showOfflineSnackBar() {

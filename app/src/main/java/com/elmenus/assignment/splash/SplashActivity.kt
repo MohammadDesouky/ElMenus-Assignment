@@ -2,6 +2,7 @@ package com.elmenus.assignment.splash
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.elmenus.assignment.constants.AppConstants
 import com.elmenus.assignment.main.view.MainActivity
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
@@ -10,12 +11,10 @@ import java.lang.Thread.sleep
 
 class SplashActivity : AppCompatActivity() {
 
-    private val delayInMs: Long = 500
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         doAsync {
-            sleep(delayInMs)
+            sleep(AppConstants.SPLASH_SCREEN_WAIT_IN_MS)
             uiThread {
                 startActivity<MainActivity>()
             }
