@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.toLiveData
 import com.elmenus.assignment.constants.AppConstants
+import com.elmenus.assignment.main.model.FoodTag
 import com.elmenus.assignment.main.model.Item
 import com.elmenus.assignment.main.model.FoodTagItemsApiResponse
 import com.elmenus.assignment.main.repository.db.FoodDatabase
@@ -15,6 +16,8 @@ import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 
 class FoodRepository(val db: FoodDatabase, context: Context) {
@@ -24,12 +27,12 @@ class FoodRepository(val db: FoodDatabase, context: Context) {
 
     var observableTags = db.tagsDao().getAllTags().toLiveData(
         pageSize = AppConstants.DATABASE_PAGE_SIZE,
-        boundaryCallback = callback
+        boundaryCallback = callback,
+        fetchExecutor = Executors.newSingleThreadExecutor()
     )
     var observableItemsOfSelectedTag = MutableLiveData<List<Item>>()
 
     fun setSelectedTagByName(tagName: String) {
-
         doAsync {
             val cachedItems = db.itemsDao().getAllItemsOf(tagName)
             if (cachedItems.isEmpty()) {
@@ -67,4 +70,5 @@ class FoodRepository(val db: FoodDatabase, context: Context) {
     fun invalidateData() {
         db.clearAllTables()
     }
+
 }

@@ -1,61 +1,91 @@
 package com.elmenus.assignment.main.repository
 
-import androidx.lifecycle.Observer
-import androidx.paging.PagedList
-import androidx.test.runner.AndroidJUnit4
-import com.elmenus.assignment.main.model.FoodTag
+import android.app.Application
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.core.app.ApplicationProvider
 import com.elmenus.assignment.main.repository.db.FoodDatabase
-import com.elmenus.assignment.main.view.MainActivity
-import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-@RunWith(
-    AndroidJUnit4.class)
 class FoodRepositoryTest {
 
-    private lateinit var repository: FoodRepository
     private lateinit var db: FoodDatabase
-    private lateinit var mockedActivity: MainActivity
-    private val LATCH_TIMEOUT_IN_SECONDS = 30L
+    private lateinit var repository: FoodRepository
+    private val LATCH_TIMEOUT_IN_SECONDS = 15L
 
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setup() {
-        mockedActivity = Robolectric.buildActivity(MainActivity::class.java)
-            .create()
-            .resume()
-            .get()
-
-        db = FoodDatabase.create(mockedActivity)
-        repository = FoodRepository(db, mockedActivity)
+        val context = ApplicationProvider.getApplicationContext<Application>()
+        db = FoodDatabase.create(context)
+        db.clearAllTables()
+        repository = FoodRepository(db, context)
     }
 
+    @Test
+    fun testLoadingTagsFromApiAndSaveThemInDatabase() {
+        var hasTags = false
+        val latch = CountDownLatch(1)
+        repository.observableTags.observeForever { tags ->
+            if (tags?.isNotEmpty() == true) {
+                hasTags = true
+                repository.observableTags.removeObserver { this }
+                latch.countDown()
+            }
+        }
+        repository.reloadTags()
+        latch.await(LATCH_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
+        assertTrue(hasTags)
+    }
 
     @Test
-    fun testLoadingTagItemsFromApiAndDatabase() {
-        val latch = CountDownLatch(1)
-        var loadedTags: PagedList<FoodTag>? = null
-        repository.observableTags.observe(mockedActivity, Observer
-        { x ->
-            loadedTags = x
-            latch.countDown()
-
-        })
-        repository.invalidateData()
+    fun testLoadingTagItemsFromApiAndSaveThemInDatabase() {
+        val latch = CountDownLatch(2)
+        var selectedTagName = ""
+        repository.observableTags.observeForever { tags ->
+            if (tags.isNotEmpty() && selectedTagName.isEmpty()) {
+                selectedTagName = tags[0]?.tagName ?: ""
+                repository.observableTags.removeObserver { this }
+                latch.countDown()
+            }
+        }
+        repository.reloadTags()
         latch.await(LATCH_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
-        assertTrue(loadedTags?.isNotEmpty() == true)
+        var allItemsNamesStartWithTagName = true
+        var dataLoaded = false
+        if (selectedTagName.isNotEmpty()) {
+            repository.observableItemsOfSelectedTag.observeForever { items ->
+                if (items.isNotEmpty()) {
+                    dataLoaded = true
+                    items.forEach { item ->
+                        if (!item.name.startsWith(selectedTagName)) {
+                            allItemsNamesStartWithTagName = false
+                            return@forEach
+                        }
+                    }
+                } else {
+                    throw Exception("Empty Items List")
+                }
+                repository.observableItemsOfSelectedTag.removeObserver { this }
+                latch.countDown()
+            }
+            repository.setSelectedTagByName(selectedTagName)
+        } else {
+            throw Exception("Empty Selected Tag Name")
+        }
+        latch.await(LATCH_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
+        assertTrue(allItemsNamesStartWithTagName && dataLoaded)
     }
 
     @After
     fun tearDown() {
-
+        db.clearAllTables()
     }
 }
