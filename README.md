@@ -60,8 +60,6 @@ doAsync{
 * Room
 used to cache both of food tags and food items in a local sqlite database.
 
-* Robolectric
-Used for just mocking activities and thier context
 
 ## References 
 ### Paging Library
